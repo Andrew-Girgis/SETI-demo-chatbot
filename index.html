@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Chat Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .demo-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-info h2 {
+            color: #333;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .demo-info p {
+            color: #666;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        
+        .webhook-info {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #495057;
+            word-break: break-all;
+        }
+        
+        .chat-trigger {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        .chat-trigger:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .instructions ul {
+            color: rgba(255, 255, 255, 0.9);
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .instructions li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+        
+        .status.success {
+            background: rgba(40, 167, 69, 0.9);
+        }
+        
+        .status.error {
+            background: rgba(220, 53, 69, 0.9);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 n8n Chat Demo</h1>
+            <p class="subtitle">Test the embedded n8n chat widget integration</p>
+        </div>
+        
+        <div class="demo-info">
+            <h2>Demo Information</h2>
+            <p>This demo page showcases the n8n chat widget integration. The chat widget should appear automatically when the page loads.</p>
+            
+            <div class="webhook-info">
+                <strong>Webhook URL:</strong><br>
+                https://n8n.srv847276.hstgr.cloud/webhook/5b4e2b85-a95c-43f6-b195-ceeede6eb376/chat
+            </div>
+            
+            <p>If you don't see the chat widget, check your browser's developer console for any errors.</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Test</h3>
+            <ul>
+                <li>The chat widget should automatically appear on the page</li>
+                <li>Click on the chat bubble to open the chat interface</li>
+                <li>Type a message and send it to test the webhook connection</li>
+                <li>Check your n8n workflow to see if the message was received</li>
+                <li>Observe the response from your n8n workflow</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="status" class="status" style="display: none;">
+        Chat widget loading...
+    </div>
+    
+    <!-- Target element for the n8n chat widget -->
+    <div id="n8n-chat"></div>
+
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        const statusDiv = document.getElementById('status');
+        
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        try {
+            showStatus('Initializing chat widget...', 'info');
+            
+            const chat = createChat({
+                // 1. Where user messages get sent  
+                webhookUrl: 'https://n8n.srv847276.hstgr.cloud/webhook/5b4e2b85-a95c-43f6-b195-ceeede6eb376/chat',
+
+                // 2. HTTP settings for that webhook  
+                webhookConfig: {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                },
+
+                // 3. The DOM selector where the chat widget will mount  
+                target: '#n8n-chat',    
+
+                // 4. 'window' gives you a floating button + pop-out panel  
+                mode: 'window',         
+
+                // 5. Keys in the payload for n8n to read  
+                chatInputKey: 'chatInput',   
+                chatSessionKey: 'sessionId',
+
+                // 6. Should we pull old messages on load?  
+                loadPreviousSession: true,  
+
+                // 7. Any extra metadata you want sent on every message  
+                metadata: {
+                    botName: 'SETI Concierge',
+                    version: '1.0.0'
+                },
+
+                // 8. Toggle the built-in welcome screen  
+                showWelcomeScreen: false,  
+
+                // 9. Language code for built-in UI strings  
+                defaultLanguage: 'en',     
+
+                // 10. Messages injected immediately when a new session starts  
+                initialMessages: [
+                    '👋 Welcome to the SETI Concierge!',
+                    'I\'m here to help you get set up—what would you like to do first?'
+                ],
+
+                // 11. UI text overrides per locale  
+                i18n: {
+                    en: {
+                        title: '🔭 SETI Concierge',
+                        subtitle: 'Ask me anything about onboarding or SETI events.',
+                        footer: 'Powered by n8n & OpenAI',
+                        getStarted: 'Start New Chat',
+                        inputPlaceholder: 'Type your message…',
+                    },
+                    // Example: you could add a French locale
+                    fr: {
+                        title: '🔭 Concierge SETI',
+                        subtitle: 'Posez-moi vos questions sur l\'intégration ou les événements SETI.',
+                        footer: 'Alimenté par n8n & OpenAI',
+                        getStarted: 'Nouveau Chat',
+                        inputPlaceholder: 'Tapez votre message…',
+                    }
+                }
+            });
+            
+            showStatus('Chat widget loaded successfully!', 'success');
+            
+            // Optional: Listen for chat events
+            if (chat && typeof chat.on === 'function') {
+                chat.on('message', (data) => {
+                    console.log('Message sent:', data);
+                });
+                
+                chat.on('response', (data) => {
+                    console.log('Response received:', data);
+                });
+            }
+            
+        } catch (error) {
+            console.error('Error initializing chat:', error);
+            showStatus('Error loading chat widget. Check console for details.', 'error');
+        }
+    </script>
+</body>
+</html>
